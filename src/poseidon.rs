@@ -1,5 +1,5 @@
 use crate::{Spec, State};
-use halo2curves::FieldExt;
+use halo2_proofs::arithmetic::FieldExt;
 
 /// Poseidon hasher that maintains state and inputs and yields single element
 /// output when desired
@@ -71,8 +71,8 @@ impl<F: FieldExt, const T: usize, const RATE: usize> Poseidon<F, T, RATE> {
 
 #[test]
 fn test_padding() {
-    use group::ff::Field;
-    use halo2curves::bn256::Fr;
+    use halo2_proofs::pairing::bn256::Fr;
+    use halo2_proofs::pairing::group::ff::Field;
 
     const R_F: usize = 8;
     const R_P: usize = 57;

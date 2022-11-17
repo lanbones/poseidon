@@ -6,9 +6,12 @@ edition = "2021"
 license = "MIT OR Apache-2.0"
 
 [dependencies]
-halo2curves = { git = 'https://github.com/privacy-scaling-explorations/halo2curves', tag = '0.3.0' }
-group = "0.12.0"
+halo2_proofs = { git = "https://github.com/junyu0312/halo2.git", branch = "gpu", default-features = true }
 subtle = { version = "2.3", default-features = false }
 
 [dev-dependencies]
 rand_core = { version = "0.6", default-features = false }
+
+[features]
+default = []
+cuda = ["halo2_proofs/cuda"]
