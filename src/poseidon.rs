@@ -20,6 +20,19 @@ impl<F: FieldExt, const T: usize, const RATE: usize> Poseidon<F, T, RATE> {
         }
     }
 
+    /// Update n = RATE elements
+    /// This assumes the current absorbing list is empty
+    pub fn update_exact(&mut self, elements: &[F; RATE]) -> F {
+        assert!(self.absorbing.len() == 0);
+        // Add new chunk of inputs for the next permutation cycle.
+        for (input_element, state) in elements.iter().zip(self.state.0.iter_mut().skip(1)) {
+            state.add_assign(input_element);
+        }
+        // Perform intermediate permutation
+        self.spec.permute(&mut self.state);
+        self.state.result()
+    }
+
     /// Appends elements to the absorption line updates state while `RATE` is
     /// full
     pub fn update(&mut self, elements: &[F]) {
