@@ -20,6 +20,12 @@ impl<F: FieldExt, const T: usize, const RATE: usize> Poseidon<F, T, RATE> {
         }
     }
 
+    /// Reset to a clear state poseidon instance
+    pub fn reset(&mut self) {
+        self.state = State::default();
+        self.absorbing = Vec::new();
+    }
+
     /// Update n = RATE elements
     /// This assumes the current absorbing list is empty
     pub fn update_exact(&mut self, elements: &[F; RATE]) -> F {
