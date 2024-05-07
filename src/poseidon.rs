@@ -27,8 +27,8 @@ impl<F: FieldExt, const T: usize, const RATE: usize> Poseidon<F, T, RATE> {
     }
 
     /// get the internal state spec
-    pub fn get_state(&self) -> State<F, T> {
-        self.state.clone()
+    pub fn get_state(&self) -> [F; T] {
+        self.state.0.clone()
     }
 
     /// Update n = RATE elements
