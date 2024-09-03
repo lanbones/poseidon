@@ -397,8 +397,8 @@ impl<F: FieldExt, const T: usize, const RATE: usize> Spec<F, T, RATE> {
 
 #[cfg(test)]
 pub(super) mod tests {
-    
-use halo2_proofs::arithmetic::FieldExt;
+
+    use halo2_proofs::arithmetic::FieldExt;
 
     use super::MDSMatrix;
     use crate::grain::Grain;
